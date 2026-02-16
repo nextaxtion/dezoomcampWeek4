@@ -1,0 +1,62 @@
+version: 2
+
+models:
+  - name: stg_green_tripdata
+    description: "Cleaned and standardized green taxi trip data"
+    columns:
+      - name: vendor_id
+        description: "Taxi vendor identifier"
+        tests:
+          - not_null
+      
+      - name: pickup_location_id
+        description: "Pickup location zone ID"
+        tests:
+          - not_null
+      
+      - name: dropoff_location_id
+        description: "Dropoff location zone ID"
+        tests:
+          - not_null
+      
+      - name: service_type
+        description: "Type of taxi service"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Green']
+      
+      - name: trip_distance
+        description: "Trip distance in miles"
+        tests:
+          - not_null
+
+  - name: stg_yellow_tripdata
+    description: "Cleaned and standardized yellow taxi trip data"
+    columns:
+      - name: vendor_id
+        description: "Taxi vendor identifier"
+        tests:
+          - not_null
+      
+      - name: pickup_location_id
+        description: "Pickup location zone ID"
+        tests:
+          - not_null
+      
+      - name: dropoff_location_id
+        description: "Dropoff location zone ID"
+        tests:
+          - not_null
+      
+      - name: service_type
+        description: "Type of taxi service"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Yellow']
+      
+      - name: trip_distance
+        description: "Trip distance in miles"
+        tests:
+          - not_null

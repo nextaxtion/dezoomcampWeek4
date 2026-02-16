@@ -1,0 +1,19 @@
+version: 2
+
+# Sources tell dbt where your raw data lives
+# Think of this as "mapping" to existing BigQuery tables
+sources:
+  - name: raw
+    description: "Raw NYC taxi trip data from DataTalksClub repository (2019-2020)"
+    
+    # Which BigQuery project and dataset?
+    database: dezoomcamp-486216
+    schema: dezoomcampds
+    
+    # List of tables we'll use (now using _nyc suffix tables)
+    tables:
+      - name: green_tripdata_nyc
+        description: "Green taxi trips (2019-2020) from DataTalksClub repo"
+        
+      - name: yellow_tripdata_nyc
+        description: "Yellow taxi trips (2019-2020) from DataTalksClub repo"

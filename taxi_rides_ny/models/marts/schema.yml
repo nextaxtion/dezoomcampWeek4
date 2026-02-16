@@ -1,0 +1,107 @@
+version: 2
+
+models:
+  - name: fact_trips
+    description: >
+      Fact table containing all NYC taxi trips (green and yellow combined).
+      This is the main analytical table for trip analysis, containing one row per trip
+      with enriched time dimensions and calculated business metrics.
+    columns:
+      - name: vendor_id
+        description: "Taxi technology provider (1 = Creative Mobile Technologies, 2 = VeriFone Inc.)"
+      
+      - name: service_type
+        description: "Type of taxi service: 'Green' or 'Yellow'"
+      
+      - name: pickup_location_id
+        description: "TLC Taxi Zone where trip started"
+      
+      - name: dropoff_location_id
+        description: "TLC Taxi Zone where trip ended"
+      
+      - name: pickup_datetime
+        description: "Date and time when meter was engaged"
+      
+      - name: dropoff_datetime
+        description: "Date and time when meter was disengaged"
+      
+      - name: trip_duration_minutes
+        description: "Calculated trip duration in minutes"
+      
+      - name: pickup_hour
+        description: "Hour of day when trip started (0-23)"
+      
+      - name: pickup_day_of_week
+        description: "Day of week when trip started (1=Sunday, 7=Saturday)"
+      
+      - name: pickup_month
+        description: "Month when trip started (1-12)"
+      
+      - name: passenger_count
+        description: "Number of passengers in the vehicle (driver-entered value)"
+      
+      - name: trip_distance
+        description: "Trip distance in miles reported by taximeter"
+      
+      - name: payment_type
+        description: "Payment method (1=Credit card, 2=Cash, 3=No charge, 4=Dispute, 5=Unknown, 6=Voided)"
+      
+      - name: fare_amount
+        description: "Time-and-distance fare calculated by the meter"
+      
+      - name: total_amount
+        description: "Total amount charged to passengers (does not include cash tips)"
+      
+      - name: revenue_per_mile
+        description: "Calculated metric: total_amount / trip_distance"
+      
+      - name: avg_speed_mph
+        description: "Calculated metric: average speed in miles per hour"
+
+  - name: fct_monthly_zone_revenue
+    description: >
+      Monthly revenue aggregation by pickup zone and service type.
+      This model is used for revenue analysis and trend tracking across zones.
+      Required for homework Questions 3-5.
+    columns:
+      - name: revenue_month
+        description: "Month of the revenue (truncated to first day of month)"
+      
+      - name: service_type
+        description: "Type of taxi service: 'Green' or 'Yellow'"
+      
+      - name: revenue_zone
+        description: "TLC Taxi Zone (pickup location)"
+      
+      - name: revenue_monthly_fare
+        description: "Sum of fare amounts for the month"
+      
+      - name: revenue_monthly_extra
+        description: "Sum of extra charges for the month"
+      
+      - name: revenue_monthly_mta_tax
+        description: "Sum of MTA tax for the month"
+      
+      - name: revenue_monthly_tip_amount
+        description: "Sum of tips for the month (credit card tips only)"
+      
+      - name: revenue_monthly_tolls_amount
+        description: "Sum of tolls for the month"
+      
+      - name: revenue_monthly_improvement_surcharge
+        description: "Sum of improvement surcharges for the month"
+      
+      - name: revenue_monthly_total_amount
+        description: "Sum of total amounts charged for the month"
+      
+      - name: revenue_monthly_congestion_surcharge
+        description: "Sum of congestion surcharges for the month"
+      
+      - name: total_monthly_trips
+        description: "Total number of trips in the month"
+      
+      - name: avg_monthly_passenger_count
+        description: "Average number of passengers per trip"
+      
+      - name: avg_monthly_trip_distance
+        description: "Average trip distance in miles"
